@@ -1,0 +1,9 @@
+### Dodaj skladnik
+POST http://localhost:8080/ingredients
+Content-Type: application/json
+
+{
+  "id": "WIEP",
+  "name": "Wieprzowina",
+  "type": "MEAT"
+}
