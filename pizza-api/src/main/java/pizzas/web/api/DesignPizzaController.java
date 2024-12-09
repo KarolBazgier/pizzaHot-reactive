@@ -16,11 +16,11 @@ import reactor.core.publisher.Mono;
 @CrossOrigin("*")
 public class DesignPizzaController {
     private PizzaRepository pizzaRepo;
-    private IngredientRepository ingredientRepository;
 
-    public DesignPizzaController(PizzaRepository pizzaRepo, IngredientRepository ingredientRepository) {
+
+    public DesignPizzaController(PizzaRepository pizzaRepo) {
         this.pizzaRepo = pizzaRepo;
-        this.ingredientRepository = ingredientRepository;
+
     }
 
     @GetMapping("/recent")

@@ -7,3 +7,6 @@ Content-Type: application/json
   "name": "Wieprzowina",
   "type": "MEAT"
 }
+
+### get recent pizzas
+GET http://localhost:8080/pizzas/recent

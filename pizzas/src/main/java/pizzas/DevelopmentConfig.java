@@ -92,7 +92,8 @@ public CommandLineRunner dataLoader(IngredientRepository repo,
 //                new Ingredient("CZO", "Czosnkowy", Type.SAUCE),
 //                new Ingredient("KET", "Ketchup", Type.SAUCE)
 //        );
-
+//        repo.saveAll(ingredients).subscribe();
+//
 
 
         Mono<List<Ingredient>> ingredientsFlux = Flux.just("KUR", "POM", "PIE", "KUK", "CHED", "CZO")
@@ -100,7 +101,7 @@ public CommandLineRunner dataLoader(IngredientRepository repo,
                 .collectList();
 
         ingredientsFlux.flatMap(ingredient -> {
-            Pizza pizza1 = new Pizza("PIZZA2", "Kurczakowa",new Date(), ingredient);
+            Pizza pizza1 = new Pizza("PIZZA4", "Kurczakowa",new Date(), ingredient);
             return pizzaRepo.save(pizza1);
         }).subscribe();
 };}
