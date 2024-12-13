@@ -1,12 +1,9 @@
 package pizzas.web.api;
 
-import org.jgroups.protocols.pbcast.FLUSH;
-import org.springframework.data.rest.core.annotation.RestResource;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pizzas.Ingredient;
 import pizzas.Pizza;
-import pizzas.data.IngredientRepository;
 import pizzas.data.PizzaRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

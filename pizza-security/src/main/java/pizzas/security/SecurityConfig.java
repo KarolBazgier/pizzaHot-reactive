@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.OPTIONS).permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/ingredients").permitAll()
                 .requestMatchers("/design", "orders/**").permitAll()
-                .requestMatchers(HttpMethod.PATCH, "/ingredients").permitAll()
+                .requestMatchers( "/ingredients/**").permitAll()
                 .requestMatchers("/**").access("permitAll")
                 .and()
                 .formLogin().loginPage("/login")

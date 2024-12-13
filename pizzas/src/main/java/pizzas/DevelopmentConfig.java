@@ -96,13 +96,22 @@ public CommandLineRunner dataLoader(IngredientRepository repo,
 //
 
 
-        Mono<List<Ingredient>> ingredientsFlux = Flux.just("KUR", "POM", "PIE", "KUK", "CHED", "CZO")
+        Mono<List<Ingredient>> ingredientsFlux1 = Flux.just("KUR", "POM", "PIE", "KUK", "CHED", "CZO")
                 .flatMap(repo::findById)
                 .collectList();
 
-        ingredientsFlux.flatMap(ingredient -> {
-            Pizza pizza1 = new Pizza("PIZZA4", "Kurczakowa",new Date(), ingredient);
+        ingredientsFlux1.flatMap(ingredient -> {
+            Pizza pizza1 = new Pizza("PIZZA1", "Kurczakowa",new Date(), ingredient);
             return pizzaRepo.save(pizza1);
+        }).subscribe();
+
+        Mono<List<Ingredient>> ingredientsFlux2 = Flux.just("WOL", "POM", "PIE", "KUK", "CHED", "CZO")
+                .flatMap(repo::findById)
+                .collectList();
+
+        ingredientsFlux2.flatMap(ingredient -> {
+            Pizza pizza2 = new Pizza("PIZZA2", "Wolowa",new Date(), ingredient);
+            return pizzaRepo.save(pizza2);
         }).subscribe();
 };}
 

@@ -10,3 +10,8 @@ Content-Type: application/json
 
 ### get recent pizzas
 GET http://localhost:8080/pizzas/recent
+
+#### get ingredient by Id
+DELETE http://localhost:8080/ingredients/testIngredient1
+
+

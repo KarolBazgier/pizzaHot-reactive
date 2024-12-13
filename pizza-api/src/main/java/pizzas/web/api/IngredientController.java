@@ -34,12 +34,15 @@ public class IngredientController {
     }
 
     @PutMapping("/{id}")
-    public void updateIngredient(@PathVariable String id, @RequestBody Ingredient ingredient) {
-        if (ingredient.getId().equals(id)) {
-            repo.save(ingredient);
-        }
-        throw new IllegalStateException("Ingredient with id: " + id + " not found");
-
+    public Mono<ResponseEntity<Ingredient>> updateIngredient(@PathVariable String id, @RequestBody Ingredient ingredient) {
+        return repo.findById(id)
+                .switchIfEmpty(Mono.error(new IllegalStateException("Ingredient with id: " + id + " not found")))
+                .flatMap(existingIngredient -> {
+                    existingIngredient.setName(ingredient.getName());
+                    existingIngredient.setType(ingredient.getType());
+                    return repo.save(existingIngredient);
+                })
+                .map(ResponseEntity::ok);
     }
 
     @PostMapping
@@ -53,8 +56,11 @@ public class IngredientController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteIngredient(@PathVariable String id) {
-        repo.deleteById(id);
+    public Mono<ResponseEntity<Object>> deleteIngredient(@PathVariable String id) {
+        return repo.findById(id)
+                .flatMap(ingredient -> repo.deleteById(id)
+                        .then(Mono.just(ResponseEntity.ok().build())))
+                .switchIfEmpty(Mono.error(new IllegalStateException("Ingredient with id: " + id +" not found")));
     }
 
 }

@@ -1,13 +1,4 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: sa
-
-  h2:
-    console:
-      enabled: true
   data:
     mongodb:
 #      uri: mongodb+srv://karol:<Pa%24%24word%40123>@cluster0.hdt2i.mongodb.net/pizza
